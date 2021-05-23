@@ -21,11 +21,11 @@
 	},
 	"content_scripts": [
 		{
-			"matches_": [
+			"matches": [
 				"https://app.shieldnumber.com/**",
 				"http://localhost:3000/**"
 			],
-			"matches": ["https://*/**", "http://*/**"],
+			"matches_": ["https://*/**", "http://*/**"],
 			"js": ["shieldnumber.ts"]
 		},
 		{
