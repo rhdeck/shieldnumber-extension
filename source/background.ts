@@ -43,12 +43,12 @@ async function loadContextMenu() {
 	}
 }
 loadContextMenu();
-let timer: any;
+let timer: ReturnType<typeof setTimeout>;
 browser.storage.onChanged.addListener(() => {
 	if (timer) clearTimeout(timer);
 	timer = setTimeout(loadContextMenu, 500);
 });
-browser.contextMenus.onClicked.addListener(async (o, tab) => {
+browser.contextMenus.onClicked.addListener(async (o) => {
 	const t = await browser.tabs.query({
 		active: true,
 		currentWindow: true,

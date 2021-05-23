@@ -11,7 +11,7 @@ document.addEventListener(
 	true
 );
 console.log("RHD Planted the flag");
-window.addEventListener("load", (event) => {
+window.addEventListener("load", () => {
 	// const forms = document.getElementsByTagName("form");
 	// for (let i = 0; i < forms.length; i++) {
 	// 	const form = forms[i];

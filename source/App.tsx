@@ -9,22 +9,21 @@ import { DuplicateIcon } from "@heroicons/react/outline";
 import TailwindToastContainer from "./TailwindToastContainer";
 import { toast } from "@raydeck/react-toastify";
 import ReactTooltip from "react-tooltip";
-let _triggerUpdate: Function = () => {};
+let _triggerUpdate = () => {
+	/* no-op */
+};
 browser.storage.onChanged.addListener(() => {
 	if (_triggerUpdate) _triggerUpdate();
 });
 const App: FC = () => {
 	const { copy, isSupported } = useClipboard();
 	const [accountName, setAccountName] = useState("");
-	const [accountJSON, setAccountJSON] = useState("no value here");
 	const [numbers, setNumbers] = useState<getAccountName_getNumbers_edges[]>([]);
 	const triggerUpdate = useCallback(async () => {
-		const { numbers, accountName, uploadKey, uploadUrl } =
-			await options.getAll();
+		const { numbers, accountName } = await options.getAll();
 		const temp = JSON.parse(numbers) as getAccountName_getNumbers_edges[];
 		setNumbers(temp);
 		setAccountName(accountName);
-		setAccountJSON(uploadUrl);
 		ReactTooltip.rebuild();
 	}, []);
 	useEffect(() => {

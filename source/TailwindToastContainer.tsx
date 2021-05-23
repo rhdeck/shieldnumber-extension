@@ -19,9 +19,7 @@ const TailwindToastContainer: FC<ToastContainerProps> = (props) => {
 					" flex p-1 min-h-10 rounded-t-md justify-between overflow-hidden cursor-pointer";
 				return myclass;
 			}}
-			bodyClassName={({ type: _ }) =>
-				"text-sm text-md font-white font-med block p-3"
-			}
+			bodyClassName={() => "text-sm text-md font-white font-med block p-3"}
 			position="bottom-center"
 			autoClose={1500}
 			{...props}

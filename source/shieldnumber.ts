@@ -3,7 +3,6 @@ import {
 	getAccountName_getAccount,
 	getAccountName_getNumbers_edges,
 } from "./graphqltypes";
-import { browser } from "webextension-polyfill-ts";
 
 console.log("RHD Planted the SHIELDNUMBER flag");
 (async () => {

@@ -2,11 +2,8 @@
 	"private": true,
 	"scripts": {
 		"build": "yarn tailwind:css && parcel build source/manifest.json --no-content-hash --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
-		"lint": "run-p lint:*",
-		"lint-fix": "run-p 'lint:* -- --fix'",
-		"lint:css": "stylelint source/**/*.css",
-		"lint:js": "xo",
-		"test": "run-p lint:* build",
+		"lint": "eslint source/*.ts* --max-warnings 0",
+		"test": "yarn lint && yarn build",
 		"watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr",
 		"watch:chrome": "nodemon --exec \"open http://reload.extensions\" --watch distribution/",
 		"tailwind:css": "tailwind build source/tailwind.css -c tailwind.config.js -o source/index.css",
@@ -18,19 +15,6 @@
 		"last 1 Chrome version",
 		"last 1 Firefox version"
 	],
-	"xo": {
-		"envs": [
-			"browser"
-		],
-		"rules": {
-			"no-unused-vars": [
-				"error",
-				{
-					"varsIgnorePattern": "browser"
-				}
-			]
-		}
-	},
 	"stylelint": {
 		"extends": "stylelint-config-xo"
 	},
@@ -66,6 +50,10 @@
 		"@parcel/transformer-webextension": "^2.0.0-nightly.2220",
 		"@types/react": "^17.0.6",
 		"@types/react-dom": "^17.0.5",
+		"@typescript-eslint/eslint-plugin": "^4.24.0",
+		"@typescript-eslint/parser": "^4.24.0",
+		"eslint": "^7.27.0",
+		"eslint-plugin-react": "^7.23.2",
 		"git-branch-is": "^4.0.0",
 		"husky": "^6.0.0",
 		"lint-staged": "^11.0.0",
