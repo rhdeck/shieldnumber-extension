@@ -1,8 +1,8 @@
 {
 	"name": "ShieldNumber",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"description": "Auto-fill extension for shieldnumber",
-	"homepage_url": "https://github.com/rhdeck/shieldnumber-extension",
+	"homepage_url": "https:///shieldnumber.com",
 	"manifest_version": 2,
 	"minimum_chrome_version": "74",
 	"applications": {
@@ -25,7 +25,6 @@
 				"https://app.shieldnumber.com/**",
 				"http://localhost:3000/**"
 			],
-			"matches_": ["https://*/**", "http://*/**"],
 			"js": ["shieldnumber.ts"]
 		},
 		{
