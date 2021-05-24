@@ -4,10 +4,7 @@ import {
 	getAccountName_getNumbers_edges,
 } from "./graphqltypes";
 
-console.log("RHD Planted the SHIELDNUMBER flag");
-(async () => {
-	console.log("I start with options", await options.getAll());
-})();
+// console.log("RHD Planted the SHIELDNUMBER flag");
 window.addEventListener("shieldNumber_updateAccount", (({
 	detail: { numbers, account },
 }: CustomEvent<{
@@ -21,8 +18,6 @@ window.addEventListener("shieldNumber_updateAccount", (({
 			uploadUrl: account.extensionData.url,
 			numbers: JSON.stringify(numbers),
 		};
-		console.log("I will save the options as provided here", payload);
 		await options.setAll(payload);
-		console.log("I saved the options", await options.getAll());
 	})();
 }) as EventListener);
