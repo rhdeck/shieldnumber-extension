@@ -59,6 +59,11 @@ const App: FC = () => {
 						</h1>
 					</div>
 				</div>
+				{!accountName && (
+					<div className="prose-xl">
+						<h2>Not yet Initialized</h2>
+					</div>
+				)}
 				{numbers && (
 					<Fragment>
 						{numbers.map(({ node: { name, id } }) => {
@@ -94,7 +99,7 @@ const App: FC = () => {
 						browser.tabs.create({ url: "https://app.shieldnumber.com" })
 					}
 				>
-					Open ShieldNumber
+					{accountName ? "Open ShieldNumber" : "Set Up The Extension"}
 				</button>
 			</div>
 			<TailwindToastContainer />
