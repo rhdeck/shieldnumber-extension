@@ -10,13 +10,20 @@ document.addEventListener(
 	},
 	true
 );
-console.log("RHD Planted the flag");
-window.addEventListener("load", () => {
+// console.log("RHD Planted the flag");
+window.addEventListener("load", async () => {
 	// const forms = document.getElementsByTagName("form");
 	// for (let i = 0; i < forms.length; i++) {
 	// 	const form = forms[i];
-	console.log("RHD running on load");
-
+	// console.log("RHD running on load");
+	if (
+		!(
+			JSON.parse(
+				(await options.getAll()).numbers
+			) as getAccountName_getNumbers_edges[]
+		).length
+	)
+		return;
 	const inputs = document.querySelectorAll("input");
 	for (let j = 0; j < inputs.length; j++) {
 		const input = inputs[j];
