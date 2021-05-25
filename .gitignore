@@ -3,3 +3,4 @@ yarn.lock
 distribution
 .parcel-cache
 source/index.css
+.DS_Store
