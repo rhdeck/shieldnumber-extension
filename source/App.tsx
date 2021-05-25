@@ -5,7 +5,7 @@ import { browser } from "webextension-polyfill-ts";
 import ShieldNumber from "./ShieldNumberLogo";
 import { formatNumber } from "libphonenumber-js";
 import { useClipboard } from "use-clipboard-copy";
-import { DuplicateIcon } from "@heroicons/react/outline";
+import { DuplicateIcon, ExclamationIcon } from "@heroicons/react/outline";
 import TailwindToastContainer from "./TailwindToastContainer";
 import { toast } from "@raydeck/react-toastify";
 import ReactTooltip from "react-tooltip";
@@ -34,34 +34,54 @@ const App: FC = () => {
 		<div>
 			<ReactTooltip />
 			<div className="w-80 p-3 border-gray-400 bg-white border border-1 ">
-				<div
-					className="m-auto w-auto  mb-2 flex justify-start cursor-pointer group"
-					onClick={() => {
-						browser.tabs.create({ url: "https://app.shieldnumber.com" });
-					}}
-					data-tip="Open ShieldNumber"
-				>
-					<ShieldNumber
-						className="h-10 w-10 mr-2 text-blue-800 inline"
-						strikeColor="#444"
-					/>
-					<div className="p-0 -mt-1">
-						<div className="-mb-1">
-							<span className="text-lg font-extrabold text-gray-800 group-hover:text-gray-400">
-								Shield
-							</span>
-							<span className="text-lg font-extrabold text-blue-800 group-hover:text-blue-400">
-								Number
-							</span>
+				{accountName && (
+					<div
+						className="m-auto w-auto  mb-2 flex justify-start cursor-pointer group"
+						onClick={() => {
+							browser.tabs.create({ url: "https://app.shieldnumber.com" });
+						}}
+						data-tip="Open ShieldNumber"
+					>
+						<ShieldNumber
+							className="h-10 w-10 mr-2 text-blue-800 inline"
+							strikeColor="#444"
+						/>
+						<div className="p-0 -mt-1">
+							<div className="-mb-1">
+								<span className="text-lg font-extrabold text-gray-800 group-hover:text-gray-400">
+									Shield
+								</span>
+								<span className="text-lg font-extrabold text-blue-800 group-hover:text-blue-400">
+									Number
+								</span>
+							</div>
+							<h1 className="text-blue-800 text-sm font-medium group-hover:text-blue-400">
+								{accountName}
+							</h1>
 						</div>
-						<h1 className="text-blue-800 text-sm font-medium group-hover:text-blue-400">
-							{accountName}
-						</h1>
 					</div>
-				</div>
+				)}
 				{!accountName && (
-					<div className="prose-xl">
-						<h2>Not yet Initialized</h2>
+					<div className="rounded-md bg-yellow-50 p-4">
+						<div className="flex">
+							<div className="flex-shrink-0">
+								<ExclamationIcon
+									className="h-5 w-5 text-yellow-400"
+									aria-hidden="true"
+								/>
+							</div>
+							<div className="ml-3">
+								<h3 className="text-sm font-medium text-yellow-800">
+									Not Yet Initialized
+								</h3>
+								<div className="mt-2 text-sm text-yellow-700">
+									<p>
+										Press the button below to replace this warning with your
+										ShieldNumber(s)
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
 				)}
 				{numbers && (
