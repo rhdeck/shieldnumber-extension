@@ -1,6 +1,6 @@
 {
 	"name": "ShieldNumber",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Auto-fill extension for shieldnumber",
 	"homepage_url": "https:///shieldnumber.com",
 	"manifest_version": 2,
@@ -23,13 +23,15 @@
 		{
 			"matches": [
 				"https://app.shieldnumber.com/**",
+				"https://app.phonetoemail.com/**",
 				"http://localhost:3000/**"
 			],
 			"js": ["shieldnumber.ts"]
 		},
 		{
-			"exclude_matches": [
+			"_exclude_matches": [
 				"https://app.shieldnumber.com/**",
+				"https://app.phonetoemail.com/**",
 				"http://localhost:3000/**"
 			],
 			"matches": ["https://*/**", "http://*/**"],
