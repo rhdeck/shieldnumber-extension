@@ -1,39 +1,51 @@
 {
+	"version": "1.0.4",
 	"private": true,
+	"name": "shieldnumber",
+	"description": "Get the extension and visit <a href=\"https://app.shieldnumber.com\">ShieldNumber</a> to get started. Note that this extension is only useful with a ShieldNumber account.",
+	"summary": " Automatically fill in phone numbers with your private ShieldNumber.",
+	"homepage": "https://shieldnumber.com",
 	"scripts": {
-		"build": "parcel build source/manifest.json --no-content-hash --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
-		"lint": "run-p lint:*",
-		"lint-fix": "run-p 'lint:* -- --fix'",
-		"lint:css": "stylelint source/**/*.css",
-		"lint:js": "xo",
-		"test": "run-p lint:* build",
-		"watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr"
+		"build": "yarn tailwind:css && yarn build:version && parcel build source/manifest.json --no-content-hash --no-source-maps --dist-dir distribution --no-cache --detailed-report 0",
+		"build:version": "npx jq \".version=`npx jq  .version package.json`\" source/manifest.json > source/manifest2.json && yarn -s prettier source/manifest2.json > source/manifest3.json && mv source/manifest3.json source/manifest.json && rm source/manifest2.json",
+		"build:source": "zip web-ext-artifacts/source-code-`npx jq -r \".version\" package.json`.zip *.* -r source .eslintrc.js .gitattributes .gitignore .parcelrc .terserrc",
+		"build:firefox": "web-ext build",
+		"lint": "eslint source/*.ts* --max-warnings 0",
+		"test": "yarn lint && yarn build",
+		"watch": "parcel watch source/manifest.json --dist-dir distribution --no-cache --no-hmr",
+		"watch:chrome": "nodemon --exec \"open http://reload.extensions\" --watch distribution/",
+		"tailwind:css": "tailwind build source/tailwind.css -c tailwind.config.js -o source/index.css",
+		"start": "yarn tailwind:css && (yarn watch:chrome &) && (yarn watch:firefox &) && yarn watch",
+		"watch:firefox": "web-ext run -s ./distribution",
+		"pre-commit": "(git-branch-is --not main || (set -u && echo $ALLOWMAIN)) && lint-staged"
 	},
 	"browserslist": [
 		"last 1 Chrome version",
 		"last 1 Firefox version"
 	],
-	"xo": {
-		"envs": [
-			"browser"
-		],
-		"rules": {
-			"no-unused-vars": [
-				"error",
-				{
-					"varsIgnorePattern": "browser"
-				}
-			]
-		}
-	},
 	"stylelint": {
 		"extends": "stylelint-config-xo"
 	},
 	"dependencies": {
+		"@heroicons/react": "^1.0.1",
+		"@raydeck/react-toastify": "^6.0.9",
+		"@tailwindcss/forms": "^0.3.2",
+		"@tailwindcss/typography": "^0.4.0",
+		"@tailwindcss/ui": "^0.7.2",
+		"libphonenumber-js": "^1.9.17",
+		"nodemon": "^2.0.7",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"react-tooltip": "^4.2.19",
+		"react-use-clipboard": "^1.0.7",
+		"use-clipboard-copy": "^0.2.0",
 		"webext-options-sync": "^2.0.1",
-		"webextension-polyfill": "^0.7.0"
+		"webextension-polyfill": "^0.7.0",
+		"webextension-polyfill-ts": "^0.25.0"
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^12.1.4",
+		"@commitlint/config-conventional": "^12.1.4",
 		"@parcel/config-webextension": "^2.0.0-nightly.2220",
 		"@parcel/optimizer-cssnano": "^2.0.0-nightly.599",
 		"@parcel/optimizer-htmlnano": "^2.0.0-nightly.599",
@@ -44,13 +56,53 @@
 		"@parcel/transformer-postcss": "^2.0.0-nightly.599",
 		"@parcel/transformer-posthtml": "^2.0.0-nightly.598",
 		"@parcel/transformer-webextension": "^2.0.0-nightly.2220",
+		"@types/react": "^17.0.6",
+		"@types/react-dom": "^17.0.5",
+		"@typescript-eslint/eslint-plugin": "^4.24.0",
+		"@typescript-eslint/parser": "^4.24.0",
+		"eslint": "^7.27.0",
+		"eslint-plugin-react": "^7.23.2",
+		"git-branch-is": "^4.0.0",
+		"husky": "^6.0.0",
+		"lint-staged": "^11.0.0",
 		"npm-run-all": "^4.1.5",
 		"parcel": "^2.0.0-nightly.596",
+		"parcel-plugin-externals": "^0.5.2",
+		"parcel-plugin-html-externals": "^0.3.0",
+		"postcss": "^8.2.15",
+		"sourcemap-lookup": "^0.0.5",
 		"stylelint": "^13.10.0",
 		"stylelint-config-xo": "^0.20.0",
+		"tailwindcss": "^2.1.2",
+		"web-ext": "^6.1.0",
 		"xo": "^0.37.1"
 	},
 	"webExt": {
 		"sourceDir": "distribution"
+	},
+	"lint-staged": {
+		"*./source": [
+			"yarn eslint --max-warnings 0"
+		]
+	},
+	"_externals": {
+		"lib/**": false
+	},
+	"_alias": {
+		"react-dom": {
+			"global": "ReactDom",
+			"fileName": "lib/react-dom.production.min.js"
+		},
+		"react": {
+			"global": "React"
+		}
+	},
+	"_targets": {
+		"app": {
+			"includeNodeModules": {
+				"react": false,
+				"react-dom": false
+			}
+		}
 	}
 }
