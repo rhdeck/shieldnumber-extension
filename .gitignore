@@ -4,3 +4,4 @@ distribution
 .parcel-cache
 source/index.css
 .DS_Store
+web-ext-artifacts

@@ -1,3 +1,4 @@
+![ShieldNumber](images/cws/marquee-promo.png)
 # You Deserve Two Phone Numbers
 
 Protect your privacy by with a phone number that doesn't ring. 
