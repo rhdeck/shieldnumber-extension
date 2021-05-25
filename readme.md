@@ -18,7 +18,7 @@ Your ShieldNumber is useful when you give it to strangers and business associate
 ```bash
 yarn # Loads dependencies based on the yarn.lock files
 NODE_ENV=production yarn build # Generates the output files in the /distribution directory
-yarn web-ext build # Generates the unsigned ZIP file
+yarn build:firefox # Generates the unsigned ZIP file
 ```
 ### Note on Hashed JS and CSS files
 This repository uses [parcel](https://parceljs.org) to bundle the source files. The bundled files have a different hash each time, so the file names will not match, though the content will be identical.
