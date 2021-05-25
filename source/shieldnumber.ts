@@ -3,8 +3,6 @@ import {
 	getAccountName_getAccount,
 	getAccountName_getNumbers_edges,
 } from "./graphqltypes";
-
-// console.log("RHD Planted the SHIELDNUMBER flag");
 window.addEventListener("shieldNumber_updateAccount", (({
 	detail: { numbers, account },
 }: CustomEvent<{

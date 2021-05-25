@@ -10,12 +10,7 @@ document.addEventListener(
 	},
 	true
 );
-// console.log("RHD Planted the flag");
 window.addEventListener("load", async () => {
-	// const forms = document.getElementsByTagName("form");
-	// for (let i = 0; i < forms.length; i++) {
-	// 	const form = forms[i];
-	// console.log("RHD running on load");
 	if (
 		!(
 			JSON.parse(
@@ -28,7 +23,6 @@ window.addEventListener("load", async () => {
 	for (let j = 0; j < inputs.length; j++) {
 		const input = inputs[j];
 		if (input.getAttribute("type") === "tel") {
-			console.log("adding to tel");
 			const button = document.createElement("button");
 			button.className = "inputFieldButton";
 			const iconURL = browser.runtime.getURL("icon.png");
