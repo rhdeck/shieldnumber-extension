@@ -1,6 +1,6 @@
 {
 	"name": "ShieldNumber",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Auto-fill extension for shieldnumber",
 	"homepage_url": "https:///shieldnumber.com",
 	"manifest_version": 2,
