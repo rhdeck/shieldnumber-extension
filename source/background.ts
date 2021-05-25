@@ -2,7 +2,6 @@ import { browser } from "webextension-polyfill-ts";
 import { formatNumber } from "libphonenumber-js";
 import type { getAccountName_getNumbers_edges } from "./graphqltypes";
 import options from "./options-storage";
-console.log("Getting started with background");
 async function loadContextMenu() {
 	try {
 		try {
@@ -85,7 +84,6 @@ async function uploadUsedNumber({
 }) {
 	const { uploadKey, uploadUrl } = await options.getAll();
 	if (uploadUrl) {
-		console.log("I have a targeturl", { uploadKey, uploadUrl });
 		//send back to home base
 		const body = JSON.stringify({
 			url: href,
@@ -93,7 +91,6 @@ async function uploadUsedNumber({
 			key: uploadKey,
 			number,
 		});
-		console.log("sending payload back tot he mothership", uploadUrl, body);
 
 		const response = await await fetch(uploadUrl, {
 			method: "POST", // *GET, POST, PUT, DELETE, etc.
