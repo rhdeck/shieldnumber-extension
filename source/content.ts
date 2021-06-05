@@ -22,13 +22,16 @@ window.addEventListener("load", async () => {
 	const inputs = document.querySelectorAll("input");
 	for (let j = 0; j < inputs.length; j++) {
 		const input = inputs[j];
-		if (input.getAttribute("type") === "tel") {
-			const button = document.createElement("button");
+		if (
+			input.getAttribute("type") === "tel" ||
+			input.getAttribute("name").includes("phone")
+		) {
+			const button = document.createElement("div");
 			button.className = "inputFieldButton";
 			const iconURL = browser.runtime.getURL("icon.png");
 			button.setAttribute("style", `background-image: url(${iconURL});`);
 			input.parentNode.insertBefore(button, input.nextSibling);
-			button.addEventListener("click", async () => {
+			button.addEventListener("click", async (event) => {
 				const { numbers } = await options.getAll();
 				const numbersArr = JSON.parse(
 					numbers
@@ -40,6 +43,9 @@ window.addEventListener("load", async () => {
 					title: document.title,
 					number: numbersArr[0].node.id,
 				});
+				event.stopPropagation();
+				event.preventDefault();
+				event.cancelBubble = true;
 			});
 		}
 	}
