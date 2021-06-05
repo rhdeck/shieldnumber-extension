@@ -18,4 +18,6 @@ window.addEventListener("shieldNumber_updateAccount", (({
 		};
 		await options.setAll(payload);
 	})();
+	window.dispatchEvent(new Event("shieldNumber_registered"));
 }) as EventListener);
+window.dispatchEvent(new Event("shieldNumber_registered"));
