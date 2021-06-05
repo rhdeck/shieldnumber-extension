@@ -17,7 +17,8 @@
 		"tailwind:css": "tailwind build source/tailwind.css -c tailwind.config.js -o source/index.css",
 		"start": "yarn tailwind:css && (yarn watch:chrome &) && (yarn watch:firefox &) && yarn watch",
 		"watch:firefox": "web-ext run -s ./distribution",
-		"pre-commit": "(git-branch-is --not main || (set -u && echo $ALLOWMAIN)) && lint-staged"
+		"pre-commit": "(git-branch-is --not main || (set -u && echo $ALLOWMAIN)) && lint-staged",
+		"clear": "rm -rf ./distribution"
 	},
 	"browserslist": [
 		"last 1 Chrome version",
