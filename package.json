@@ -1,5 +1,5 @@
 {
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"private": true,
 	"name": "shieldnumber",
 	"description": "Get the extension and visit <a href=\"https://app.shieldnumber.com\">ShieldNumber</a> to get started. Note that this extension is only useful with a ShieldNumber account.",
