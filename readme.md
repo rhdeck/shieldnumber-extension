@@ -1,7 +1,6 @@
 ![ShieldNumber](images/cws/marquee_promo.png)
 # You Deserve Two Phone Numbers
-
-Protect your privacy by with a phone number that doesn't ring. 
+Protect your privacy with a phone number that doesn't ring. 
 
 [ShieldNumber](https://shieldnumber.com) is a phone number that receives voicemails and texts without requiring you to answer or receive a notification. You will get an email at the end of the day or week with a summary of all your messages. It's like having a receptionist answer and hold your calls. Now you can get on with the important work in your life! 
 
