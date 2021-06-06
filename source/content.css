@@ -1,10 +1,10 @@
 .inputFieldButton {
 	display: inline;
 	/* background-color: #ff0000; */
-	background: #ffffff url("chrome-extension://__MSG_@@extension_id__/icon.png")
-		no-repeat;
+	background: #ffffff88
+		url("chrome-extension://__MSG_@@extension_id__/icon.png") no-repeat;
 	cursor: pointer;
-	position: relative;
+	position: absolute;
 	background-size: contain;
 	background-position: 0px 0px;
 	width: 20px;
